@@ -2,6 +2,7 @@ from contextlib import nullcontext
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 # Create your models here.
 
 class Product(models.Model):
@@ -19,6 +20,13 @@ class Product(models.Model):
   brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True)
   price = models.DecimalField(max_digits=10, decimal_places=5)
   created_date = models.DateTimeField(default=timezone.now)
+  
+  slug = models.SlugField(blank=True, null=True)
+  
+  def save(self, *args, **kwargs):
+    if not self.slug and self.name :
+      self.slug = slugify(self.name)
+    super(Product, self).save(*args, **kwargs)
   
   def __str__(self):
     return self.name
