@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Product(models.Model):
@@ -12,12 +13,43 @@ class Product(models.Model):
     ("Used", "Used")
   )
   
+  city_choice = (
+  ('Alexandria', 'Alexandria'),
+  ('Aswan', 'Aswan'),
+  ('Asyut', 'Asyut'),
+  ('Beheira', 'Beheira'),
+  ('Beni Suef', 'Beni Suef'),
+  ('Cairo', 'Cairo'),
+  ('Dakahlia', 'Dakahlia'),
+  ('Damietta', 'Damietta'),
+  ('Fayoum', 'Fayoum'),
+  ('Gharbia', 'Gharbia'),
+  ('Giaz', 'Giza'),
+  ('Ismailia', 'Ismailia'),
+  ('Kafr al-Sheikh', 'Kafr al-Sheikh'),
+  ('Luxor', 'Luxor'),
+  ('Matruh', 'Matruh'),
+  ('Minya', 'Minya'),
+  ('Monufia', 'Monufia'),
+  ('New Valley', 'New Valley'),
+  ('Port Said', 'Port Said'),
+  ('Qalyubia', 'Qalyubia'),
+  ('Qena', 'Qena'),
+  ('Red Sea', 'Red Sea'),
+  ('Sharqia', 'Sharqia'),
+  ('Sohag', 'Sohag'),
+  ('South Sinai', 'South Sinai'),
+  ('Suez', 'Suez'),
+  )
+  
+  
   name = models.CharField(max_length=100)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
-  description = models.TextField(max_length=500)
+  description = RichTextField()
   condition = models.CharField(max_length=100, choices=CONDITION_TYPE)
   category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
   brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True)
+  city = models.CharField(choices=city_choice, max_length=100)
   price = models.IntegerField()
   image = models.ImageField(upload_to='main_product/', blank=True, null=True)
   created_date = models.DateTimeField(default=timezone.now)

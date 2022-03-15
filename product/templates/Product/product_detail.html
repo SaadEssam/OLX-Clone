@@ -41,8 +41,12 @@
 						<!-- //FlexSlider -->
 						<div class="product-details">
 							<h4>Brand : <a href="#">{{product_detail.brand}}</a></h4>
+							<h4>City : <strong>{{product_detail.city}}</strong></h4>
 							<h4>Views : <strong>150</strong></h4>
-							<p><strong>Description : </strong>{{product_detail.description}}.</p>
+							<div class="car-description mb-50">
+								<strong>Description : </strong>
+								<p>{{product_detail.description | safe}}</p>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-5 product-details-grid">
