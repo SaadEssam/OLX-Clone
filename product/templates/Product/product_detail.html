@@ -15,7 +15,9 @@
 				<div class="product-desc">
 					<div class="col-md-7 product-view">
 						<h2>{{product_detail.name}}</h2>
-						<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at {{product_detail.created_date| naturalday}}, Ad ID: 987654321</p>
+						<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">{{product_detail.city}}</a>
+							| Added at {{product_detail.created_date| naturalday}}, Ad ID: 987654321</p>
+						
 						<div class="flexslider">
 							<ul class="slides">
 								{% for image in product_images %}
@@ -41,11 +43,10 @@
 						<!-- //FlexSlider -->
 						<div class="product-details">
 							<h4>Brand : <a href="#">{{product_detail.brand}}</a></h4>
-							<h4>City : <strong>{{product_detail.city}}</strong></h4>
 							<h4>Views : <strong>150</strong></h4>
 							<div class="car-description mb-50">
 								<strong>Description : </strong>
-								<p>{{product_detail.description | safe}}</p>
+									<p>{{product_detail.description | safe}}</p>
 							</div>
 						</div>
 					</div>

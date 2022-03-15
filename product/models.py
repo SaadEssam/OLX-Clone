@@ -2,8 +2,8 @@ from contextlib import nullcontext
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 # Create your models here.
 
 class Product(models.Model):
