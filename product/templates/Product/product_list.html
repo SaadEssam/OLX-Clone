@@ -418,13 +418,16 @@
 				<h3> Select your category and find the perfect ad</h3>
 				<ul class="all-cat-list">
 					{% for category in category_list %}
-						<li><a href="mobiles.html">{{category}} <span class="num-of-ads">({{category.total_products}})</span></a></li>
+						<li><a href="{% url 'products:product_list_category' category.slug %}">{{category}} <span class="num-of-ads">({{category.total_products}})</span></a></li>
 					{% endfor %}
 				</ul>
 			</div>
 			<ol class="breadcrumb" style="margin-bottom: 5px;">
-          <li><a href="index.html">Home</a></li>
-          <li class="active">All Ads</li>
+          <li><a href="/">Home</a></li>
+          <li class="active"> <a href="{% url 'products:product_list' %}">All Ads</a></li>
+					{% if category %}
+						<li class="active">{{category}}</li>
+					{% endif %}
 			</ol>
 			<div class="ads-grid">
 				<div class="side-bar col-md-3">
